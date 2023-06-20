@@ -4,8 +4,8 @@ const app = express();
 const mongoose = require('mongoose');
 mongoose.connect(process.env.CONNECTIONSTRING)
   .then(() => {
-    console.log('Conectei a base de dados.');
-    app.emit('pronto');
+    console.log('I connected to the database.');
+    app.emit('ready');
   })
   .catch(e => console.log(e));
 const session = require('express-session');
@@ -44,7 +44,7 @@ app.use(checkCsrfError);
 app.use(csrfMiddleware);
 app.use(routes);
 
-app.on('pronto', () => {  
+app.on('ready', () => {  
 app.listen(3000, () => {
     console.log('Acessar http://localhost:3000');
     console.log('Servidor executando na porta 3000');
