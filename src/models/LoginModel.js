@@ -15,6 +15,11 @@ class Login {
         this.user = null;
     }
 
+    register() {
+        this.valida();
+        if(this.errors.length > 0) return;
+    }
+
     valida() {
         this.cleanUp();
         if(!validator.isEmail(this.body.email)) this.error.push('Invalid email address.');
