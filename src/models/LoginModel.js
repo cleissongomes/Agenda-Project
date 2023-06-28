@@ -12,8 +12,13 @@ class Login {
         this.body = body;
         this.errors = [];
         this.user = null;
-    }
 
+    this.body = {
+        email: this.body.email,
+        password: this.body.password
+    }
 }
+
+};
 
 module.exports = Login;
