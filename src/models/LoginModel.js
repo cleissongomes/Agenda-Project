@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { register } = require('../controllers/loginController');
 
 const LoginSchema = new mongoose.Schema({
     email: { type: String, required: true },
@@ -12,13 +13,20 @@ class Login {
         this.body = body;
         this.errors = [];
         this.user = null;
-
-    this.body = {
-        email: this.body.email,
-        password: this.body.password
     }
-}
 
+    cleanUp() {
+        for(const key in this.body) {
+            if(!typeof this.body[key] !== 'string') {
+                this.body[key] = '';
+            }
+        }
+
+        this.body = {
+            email: this.body.email,
+            password: this.body.password 
+        };
+    }
 };
 
 module.exports = Login;
