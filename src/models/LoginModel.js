@@ -22,7 +22,7 @@ class Login {
 
     valida() {
         this.cleanUp();
-        if(!validator.isEmail(this.body.email)) this.error.push('Invalid email address.');
+        if(!validator.isEmail(this.body.email)) this.errors.push('Invalid email address.');
         if(this.body.password.length < 3 || this.body.password.length > 50 ) {
             this.errors.push('Invalid Password: Password must be between 3 and 50 characters long.')
         }
