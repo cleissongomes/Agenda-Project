@@ -45,8 +45,8 @@ app.use(csrfMiddleware);
 app.use(routes);
 
 app.on('ready', () => {  
-app.listen(5000, () => {
-    console.log('Acessar http://localhost:5000');
-    console.log('Servidor executando na porta 5000');
+app.listen(3000, () => {
+    console.log('Acessar http://localhost:3000');
+    console.log('Servidor executando na porta 3000');
 });
 });
