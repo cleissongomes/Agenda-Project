@@ -28,6 +28,7 @@ class Login {
 
         if(!bcryptjs.compareSync(this.body.password, this.user.password)) {
             this.errors.push('Invalid password');
+            this.user = null;
             return;
         }
 

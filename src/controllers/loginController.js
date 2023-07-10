@@ -1,4 +1,3 @@
-const { async } = require('regenerator-runtime');
 const Login = require('../models/LoginModel');
 
 exports.index = (req, res) => {
@@ -22,8 +21,6 @@ exports.register = async function(req, res) {
         req.session.save(function() {
             return res.redirect('back');
         });
-    
-        return res.send(login.errors);
     } catch(e) {
         console.log(e);
         return res.render('404');
@@ -31,5 +28,26 @@ exports.register = async function(req, res) {
 };
 
 exports.login = async function(req, res) {
+    try { 
+        const login = new Login(req.body);
+        await login.login();
+
+        if (login.errors.length > 0) {
+            req.flash('errors', login.errors);
+            req.session.save(function() {
+                return res.redirect('back');
+            });
+            return;
+        }
+
+        req.flash('success', 'You have entered the system.');
+        req.session.user = login.user;
+        req.session.save(function() {
+            return res.redirect('back');
+        });
+    } catch(e) {
+        console.log(e);
+        return res.render('404');
+    }
 
 };
