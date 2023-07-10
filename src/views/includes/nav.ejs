@@ -8,7 +8,11 @@
       <div class="collapse navbar--collapse d-lg-flex justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-          <% if(!user) { %>   
+          <% if(user) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login/logout">To go out</a> 
+            </li>
+          <% } else { %>
           <li class="nav-item">
             <a class="nav-link" href="/login/index">To enter</a> 
           </li>
