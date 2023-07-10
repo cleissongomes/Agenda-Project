@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { async } = require('regenerator-runtime');
 const validator = require('validator');
 const bcryptjs = require('bcryptjs');
 
@@ -50,7 +51,7 @@ class Login {
     }
 
     async userExists() {
-        this.user = await LoginModel.findOne({ email: this.body.email });
+        const user = await LoginModel.findOne({ email: this.body.email });
         if(user) this.errors.push('User already exists.');
     }
 

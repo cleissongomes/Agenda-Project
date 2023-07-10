@@ -13,16 +13,17 @@ exports.register = async function(req, res) {
         if (login.errors.length > 0) {
             req.flash('errors', login.errors);
             req.session.save(function() {
-                return res.redirect('back');
+                return res.redirect('/login/index');
             });
             return;
         }
-
         req.flash('success', 'Your user has been successfully created.');
         req.session.save(function() {
-            return res.redirect('back');
+            return res.redirect('/login/index');
         });
-    } catch(e) {
+        return;
+
+    }   catch(e) {
         console.log(e);
         return res.render('404');
     }
@@ -36,7 +37,7 @@ exports.login = async function(req, res) {
         if (login.errors.length > 0) {
             req.flash('errors', login.errors);
             req.session.save(function() {
-                return res.redirect('back');
+                return res.redirect('/login/index');
             });
             return;
         }
@@ -44,7 +45,7 @@ exports.login = async function(req, res) {
         req.flash('success', 'You have entered the system.');
         req.session.user = login.user;
         req.session.save(function() {
-            return res.redirect('back');
+            return res.redirect('/login/index');
         });
     } catch(e) {
         console.log(e);
