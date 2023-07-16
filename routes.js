@@ -13,6 +13,7 @@ route.post('/login/login', loginController.login);
 route.get('/login/logout', loginController.logout);
 
 route.get('/contact/index', loginRequired, contactController.index);
+route.post('/contact/register', loginRequired, contactController.register);
 
 
 
