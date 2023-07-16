@@ -13,8 +13,26 @@ const ContactSchema = new mongoose.Schema({
 const ContactModel = mongoose.model('Contact', ContactSchema);
 
 class Contact {
+    constructor(body) {
+        this.body = body;
+        this.errors = [];
+        this.user = null;
+    }
 
+    cleanUp() {
+        for(const key in this.body) {
+            if(typeof this.body[key] !== 'string') {
+                this.body[key] = '';
+            }
+        }
 
+        this.body = {
+            name: this.body.name,
+            surname: this.body.surname,
+            email: this.body.email,
+            telephone: this.body.telephone 
+        };
+    }
 }
 
 module.exports = Contact;
