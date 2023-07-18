@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { async } = require("regenerator-runtime");
 const validator = require('validator');
 
 const ContactSchema = new mongoose.Schema({
@@ -16,7 +17,13 @@ class Contact {
     constructor(body) {
         this.body = body;
         this.errors = [];
-        this.user = null;
+        this.contact = null;
+    }
+
+    async register(){
+        this.validate();
+        if(this.errors.length > 0) return;
+        this.contact = await ContactModel.create(this.body);
     }
 
     validate() {
