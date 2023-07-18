@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { async } = require("regenerator-runtime");
+const { async } = require('regenerator-runtime');
 const validator = require('validator');
 
 const ContactSchema = new mongoose.Schema({
