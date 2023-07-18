@@ -21,11 +21,10 @@ class Contact {
 
     validate() {
         this.cleanUp();
-        if(this.name !== 'string') this.errors.push('Invalid name.');
-        if(this.surname !== 'string') this.errors.push('Invalid surname.');
-        if(!validator.isEmail(this.body.email)) this.errors.push('Invalid email address.');
-        if(this.telephone.length !== 11 || this.telephone.length !== Number) {
-            this.errors.push('Invalid telephone.')
+        if(this.body.email && !validator.isEmail(this.body.email)) this.errors.push('Invalid email address.');
+        if(!this.body.name) this.errors.push('Name is a required field.');
+        if(!this.body.email && !this.body.telephone) { 
+            this.errors.push('At least one contact needs to be sent: email or phone.');
         }
     }
 
