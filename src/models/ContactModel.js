@@ -19,6 +19,16 @@ class Contact {
         this.user = null;
     }
 
+    validate() {
+        this.cleanUp();
+        if(this.name !== 'string') this.errors.push('Invalid name.');
+        if(this.surname !== 'string') this.errors.push('Invalid surname.');
+        if(!validator.isEmail(this.body.email)) this.errors.push('Invalid email address.');
+        if(this.telephone.length !== 11 || this.telephone.length !== Number) {
+            this.errors.push('Invalid telephone.')
+        }
+    }
+
     cleanUp() {
         for(const key in this.body) {
             if(typeof this.body[key] !== 'string') {
