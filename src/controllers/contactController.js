@@ -24,3 +24,8 @@ exports.register = async (req, res) => {
         return res.render('');
     }
 };
+
+exports.editIndex = (req, res) => {
+    if(!req.params.id) return res.render('404');
+    res.render('contact');
+    };
