@@ -20,6 +20,10 @@ class Contact {
         this.contact = null;
     }
 
+    async searchById(id) {
+        const user = await ContactModel.findById(id);
+    } 
+
     async register(){
         this.validate();
         if(this.errors.length > 0) return;
