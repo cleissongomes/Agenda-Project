@@ -25,7 +25,11 @@ exports.register = async (req, res) => {
     }
 };
 
-exports.editIndex = (req, res) => {
+exports.editIndex = async (req, res) => {
     if(!req.params.id) return res.render('404');
-    res.render('contact');
+
+    const user = await Contact.searchById(req.params.id);
+    if(!user) return res.render('404');
+
+    res.render('contact', { contact });
     };

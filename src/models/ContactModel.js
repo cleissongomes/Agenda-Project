@@ -21,7 +21,9 @@ class Contact {
     }
 
     async searchById(id) {
+        if(typeof id !== 'string') return;
         const user = await ContactModel.findById(id);
+        return user;
     } 
 
     async register(){
