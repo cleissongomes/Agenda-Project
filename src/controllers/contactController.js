@@ -2,7 +2,9 @@ const { async } = require('regenerator-runtime');
 const Contact = require('../models/ContactModel');
 
 exports.index = (req, res) => {
-    res.render('contact');
+    res.render('contact', {
+        contact: {}
+    });
 };
 
 exports.register = async (req, res) => {
@@ -28,8 +30,8 @@ exports.register = async (req, res) => {
 exports.editIndex = async (req, res) => {
     if(!req.params.id) return res.render('404');
 
-    const user = await Contact.searchById(req.params.id);
-    if(!user) return res.render('404');
+    const contact = await Contact.searchById(req.params.id);
+    if(!contact) return res.render('404');
 
     res.render('contact', { contact });
-    };
+};
